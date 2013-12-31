@@ -1,0 +1,30 @@
+<% if @view_in_config && @erb_code %>
+  <%= render inline: ERB.new(@erb_code).result(binding) %>
+  
+<% else %>
+  <h4><%=@title%></h4>
+  <table class="table table-striped">
+    <tr>
+      <th><%= t('Create Date') %></th>
+      <th><%= t('Done By') %></th>
+      <th><%= t('Event') %></th>
+      <th><%= t('From=>To') %></th>
+      <th><%= t('Comment') %></th>
+      
+    </tr>
+
+    <% models.each do |r| %>
+        <tr>
+          <td><%= (r.created_at + 8.hours).strftime("%Y/%m/%d")%></td>
+          <td><%= r.action_by_name %></td>
+          <td><%= t(r.event) %></td>
+          <td><%= t(r.from) %>=><%= t(r.to)%></td>
+          <td><%= r.comment %></td>
+          
+        </tr>
+    <% end %>
+
+  </table>
+	
+<% end %>
+

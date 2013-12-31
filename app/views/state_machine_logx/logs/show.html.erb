@@ -1,0 +1,27 @@
+<% if @view_in_config && @erb_code %>
+  <%= render inline: ERB.new(@erb_code).result(binding) %>
+  
+<% else %>
+<div id="main_body">
+<h4><%=@title %></h4>
+
+<p>
+  <b><%= t('Create Date') %>:</b>
+  <%= @log.created_at.strftime("%Y/%m/%d") %>
+</p>
+<p>
+  <b><%= t('Event') %>:</b>
+  <%= @log.event%>
+</p>
+<p>
+  <b><%= t('From => To') %>:</b>
+  <%= @log.from %>=><%= @log.to%>
+</p>
+<p>
+  <b><%= t('Comment') %>:</b>
+  <%= @log.comment %>
+</p>
+
+</div>
+
+<% end %>
