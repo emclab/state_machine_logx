@@ -16,6 +16,6 @@ class CreateStateMachineLogxLogs < ActiveRecord::Migration
     
     add_index :state_machine_logx_logs, :resource_string
     add_index :state_machine_logx_logs, :resource_id
-    add_index :state_machine_logx_logs, [:resource_string, :resource_id]
+    add_index :state_machine_logx_logs, [:resource_string, :resource_id], :name => :state_machine_logx_logs_resources
   end
 end
