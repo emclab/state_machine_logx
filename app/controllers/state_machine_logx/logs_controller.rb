@@ -2,7 +2,7 @@ require_dependency "state_machine_logx/application_controller"
 
 module StateMachineLogx
   class LogsController < ApplicationController
-    before_filter :require_employee
+    before_action :require_employee
     
     def index
       @title = t('Workflow Logs')      
