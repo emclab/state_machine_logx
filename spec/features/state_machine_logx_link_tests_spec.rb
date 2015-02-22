@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "LinkTests" do
+RSpec.describe "LinkTests", type: :request do
   describe "GET /state_machine_logx_link_tests" do
     mini_btn = 'btn btn-mini '
     ActionView::CompiledTemplates::BUTTONS_CLS =
@@ -37,7 +37,7 @@ describe "LinkTests" do
         :sql_code => "")
         
       
-      visit '/'
+      visit authentify.new_session_path
       #save_and_open_page
       fill_in "login", :with => @u.login
       fill_in "password", :with => @u.password
@@ -47,12 +47,12 @@ describe "LinkTests" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       sup = FactoryGirl.create(:state_machine_logx_log)
-      visit logs_path
-      page.should have_content('Workflow Logs')
+      visit state_machine_logx.logs_path
+      expect(page).to have_content('Workflow Logs')
       #save_and_open_page
       
-      visit log_path(sup.id)
-      page.should have_content('Workflow Log Info')
+      visit state_machine_logx.log_path(sup.id)
+      expect(page).to have_content('Workflow Log Info')
     end
   end
 end
