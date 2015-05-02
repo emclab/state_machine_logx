@@ -19,6 +19,7 @@ module StateMachineLogx
       @u = FactoryGirl.create(:user, :user_levels => [ul], :user_roles => [ur])
       #@qs = FactoryGirl.create(:commonx_misc_definition, :for_which => 'quality_system')
       
+      session[:user_role_ids] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id).user_role_ids
     end
     
     render_views
@@ -27,7 +28,6 @@ module StateMachineLogx
         user_access = FactoryGirl.create(:user_access, :action => 'index', :resource => 'state_machine_logx_logs', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "StateMachineLogx::Log.order('created_at DESC')")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:state_machine_logx_log)
         get 'index'
         expect(assigns(:logs)).to   eq([sup])
@@ -40,7 +40,6 @@ module StateMachineLogx
         user_access = FactoryGirl.create(:user_access, :action => 'show', :resource => 'state_machine_logx_logs', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "")
         session[:user_id] = @u.id
-        session[:user_privilege] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id)
         sup = FactoryGirl.create(:state_machine_logx_log, :last_updated_by_id => session[:user_id], :action_by_name => 'some guy')
         get 'show', {:id => sup.id}
         expect(response).to be_success
