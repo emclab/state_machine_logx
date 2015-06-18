@@ -2,8 +2,15 @@
   <%= render inline: ERB.new(@erb_code).result(binding) %>
   
 <% else %>
-  <h4><%=@title%></h4>
-  <table class="table table-striped">
+
+<div class="container-fluid">
+        <div class="page-header clearfix">
+          <div class="pull-left">
+            <h2><%=@title%></h2>
+          </div>
+        </div>
+      <table class="table table-hover">
+              <thead>
     <tr>
       <th><%= t('Create Date') %></th>
       <th><%= t('Done By') %></th>
@@ -12,7 +19,8 @@
       <th><%= t('Comment') %></th>
       
     </tr>
-
+               </thead>
+         <tbody>
     <% models.each do |r| %>
         <tr>
           <td><%= (r.created_at + 8.hours).strftime("%Y/%m/%d")%></td>
@@ -23,8 +31,9 @@
           
         </tr>
     <% end %>
-
-  </table>
+           </tbody>
+ </table>
+	
 	
 <% end %>
 

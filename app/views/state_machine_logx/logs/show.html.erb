@@ -2,26 +2,46 @@
   <%= render inline: ERB.new(@erb_code).result(binding) %>
   
 <% else %>
-<div id="main_body">
-<h4><%=@title %></h4>
 
-<p>
-  <b><%= t('Create Date') %>:</b>
-  <%= @log.created_at.strftime("%Y/%m/%d") %>
-</p>
-<p>
-  <b><%= t('Event') %>:</b>
-  <%= @log.event%>
-</p>
-<p>
-  <b><%= t('From => To') %>:</b>
-  <%= @log.from %>=><%= @log.to%>
-</p>
-<p>
-  <b><%= t('Comment') %>:</b>
-  <%= @log.comment %>
-</p>
-
-</div>
-
+<div class="container">
+  <div class="page-header clearfix">
+      <div class="pull-left">
+        <h2><%=@title%></h2>
+      </div>
+  </div>
+ <div class="row">
+    <div class="col-sm-<%=BUTTONS_CLS['left-span#']%> form-group">
+         <b><%= t('Create Date') %></b>
+    </div>
+    <div class="col-sm-<%=BUTTONS_CLS['right-span#']%> form-group">
+         <%= @log.created_at.strftime("%Y/%m/%d %H:%M%p") %>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-sm-<%=BUTTONS_CLS['left-span#']%> form-group">
+             <b><%= t('Event') %></b>
+    </div>
+    <div class="col-sm-<%=BUTTONS_CLS['right-span#']%> form-group">
+           <%= @log.event %>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-sm-<%=BUTTONS_CLS['left-span#']%> form-group">
+         <b><%= t('From => To') %></b>
+    </div>
+    <div class="col-sm-<%=BUTTONS_CLS['right-span#']%> form-group">
+           <%= @log.from %>=><%= @log.to %>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-sm-<%=BUTTONS_CLS['left-span#']%> form-group">
+          <b><%= t('Comment') %></b>
+     </div>
+    <div class="col-sm-<%=BUTTONS_CLS['right-span#']%> form-group">
+            <%= @log.comment %>
+    </div>
+  </div>
+ 
+ </div>
+ 
 <% end %>
