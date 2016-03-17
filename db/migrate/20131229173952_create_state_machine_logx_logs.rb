@@ -10,12 +10,13 @@ class CreateStateMachineLogxLogs < ActiveRecord::Migration
       t.string :to
       t.text :error_message
       t.integer :last_updated_by_id
-
       t.timestamps
+      t.string :fort_token
     end
     
     add_index :state_machine_logx_logs, :resource_string
     add_index :state_machine_logx_logs, :resource_id
     add_index :state_machine_logx_logs, [:resource_string, :resource_id], :name => :state_machine_logx_logs_resources
+    add_index :state_machine_logx_logs, :fort_token
   end
 end

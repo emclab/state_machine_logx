@@ -12,10 +12,8 @@ FactoryGirl.define do
     auth_token            "123"
     password_reset_token  nil
     password_reset_sent_at nil
+    fort_token '123456789'
 
-    #user_levels
-    #after(:build) do |user|
-    #  user.user_levels << FactoryGirl.build(:user_level, :user => user)
-    #end
+
   end
 end

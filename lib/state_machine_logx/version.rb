@@ -1,3 +1,3 @@
 module StateMachineLogx
-  VERSION = "03"
+  VERSION = "01"
 end

@@ -36,7 +36,6 @@ RSpec.describe "LinkTests", type: :request do
       user_access = FactoryGirl.create(:user_access, :action => 'show', :resource =>'state_machine_logx_logs', :role_definition_id => @role.id, :rank => 1,
         :sql_code => "")
         
-      
       visit authentify.new_session_path
       #save_and_open_page
       fill_in "login", :with => @u.login

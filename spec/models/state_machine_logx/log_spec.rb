@@ -17,6 +17,11 @@ module StateMachineLogx
       expect(c).not_to be_valid
     end
     
+    it "should reject nil fort_token" do
+      c = FactoryGirl.build(:state_machine_logx_log, :fort_token => nil)
+      expect(c).not_to be_valid
+    end
+    
     it "should reject 0 resource id" do
       c = FactoryGirl.build(:state_machine_logx_log, :resource_id => 0)
       expect(c).not_to be_valid

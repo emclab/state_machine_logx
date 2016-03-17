@@ -5,7 +5,7 @@ module StateMachineLogx
     routes {StateMachineLogx::Engine.routes}
     before(:each) do
       expect(controller).to receive(:require_signin)
-      expect(controller).to receive(:require_employee)
+      #expect(controller).to receive(:require_employee)
       #@pagination_config = FactoryGirl.create(:engine_config, :engine_name => nil, :engine_version => nil, :argument_name => 'pagination', :argument_value => 30)
     end
     
@@ -20,6 +20,7 @@ module StateMachineLogx
       #@qs = FactoryGirl.create(:commonx_misc_definition, :for_which => 'quality_system')
       
       session[:user_role_ids] = Authentify::UserPrivilegeHelper::UserPrivilege.new(@u.id).user_role_ids
+      session[:fort_token] = '123456789'
     end
     
     render_views
