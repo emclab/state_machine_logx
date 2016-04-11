@@ -1,6 +1,6 @@
 module StateMachineLogx
   class Log < ActiveRecord::Base
-    default_scope {where(fort_token: RequestStore.store[:current_token])}
+    default_scope {where(fort_token: Thread.current[:fort_token])}
     
     belongs_to :last_updated_by, :class_name => 'Authentify::User'
     
